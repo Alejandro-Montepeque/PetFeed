@@ -1,0 +1,17 @@
+@font-face {
+    font-family:'kalam' ;
+    src: url('@/assets/fonts/Kalam-Regular.ttf') format('ttf');
+}
+@font-face {
+    font-family: 'Aubade';
+    src: url('@/assets/fonts/Aubade.ttf') format('truetype');
+}
+.textos-cortos{
+    font-family: 'kalam', sans-serif;
+}
+.texto-medio{
+    font-family: 'aubade', sans-serif;
+}
+body{
+    background-color: #EFEFEF;
+}

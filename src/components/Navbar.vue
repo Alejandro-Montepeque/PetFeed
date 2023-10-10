@@ -1,0 +1,43 @@
+<template>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">PetFeed</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre nosotros</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ¿Quienes somos?
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Mision</a></li>
+              <li><a class="dropdown-item" href="#">Visión</a></li>
+              <li><a class="dropdown-item" href="#">Objetivos</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <img src="@/assets/petfeed.jpeg" alt="Logo" width="100" height="">
+    </div>
+  </nav>
+</template>
+
+<script>
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+export default {
+  name: "HeaderNavbar",
+};
+</script>
