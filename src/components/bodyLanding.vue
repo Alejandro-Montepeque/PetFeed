@@ -116,6 +116,11 @@
         </li>
       </ul>
       <h3 class="texto-medio">Revelación de nuestro producto:</h3>
+      <div>
+        <h1 class="texto-medio">Cuenta Regresiva</h1>
+        <p class="textos-cortos">Quedan {{ days }} días, {{ hours }} horas, {{ minutes }} minutos para Nustra Gran
+          Feria ANUAL y la revelación de nuestro tan esperado Producto.</p>
+      </div>
 
       <h3 class="texto-medio" id="objective">Objetivos</h3>
       <ul class="text-justify textos-cortos">
@@ -157,10 +162,15 @@
 
 <script>
 import '@/assets/CSS/Style.css'
+
+const SECOND = 1000; // Constante para un segundo en milisegundos
+
 export default {
   name: "bodyLanding",
   data() {
     return {
+      targetDate: new Date(new Date().getFullYear(), new Date().getMonth(), 29),
+      countdown: null,
       images: [
         require('@/assets/cuido.png'),
         require('@/assets/cuido2.jpg'),
@@ -174,7 +184,7 @@ export default {
         require("@/assets/tecno2.jpg"),
         require("@/assets/petfeed.jpeg"),
       ],
-      currentNewImages: 0 // Cambié el nombre de la variable para seguir las convenciones
+      currentNewImages: 0,
     };
   },
   mounted() {
@@ -182,14 +192,38 @@ export default {
   },
   methods: {
     startImageTransition() {
-      setInterval(() => {
-        this.currentImage = (this.currentImage + 1) % this.images.length;
-      }, 3000);
-      setInterval(() => {
-        this.currentNewImages = (this.currentNewImages + 1) % this.newImages.length;
-      }, 3500);
+      this.rotateImages();
+      this.rotateNewImages();
+    },
+    rotateImages() {
+      this.currentImage = (this.currentImage + 1) % this.images.length;
+      setTimeout(this.rotateImages, 3000);
+    },
+    rotateNewImages() {
+      this.currentNewImages = (this.currentNewImages + 1) % this.newImages.length;
+      setTimeout(this.rotateNewImages, 3500);
     },
   },
-
+  computed: {
+    days() {
+      const difference = this.targetDate - new Date();
+      return Math.floor(difference / (SECOND * 60 * 60 * 24));
+    },
+    hours() {
+      const difference = this.targetDate - new Date();
+      return Math.floor((difference % (SECOND * 60 * 60 * 24)) / (SECOND * 60 * 60));
+    },
+    minutes() {
+      const difference = this.targetDate - new Date();
+      return Math.floor((difference % (SECOND * 60 * 60)) / (SECOND * 60));
+    },
+    seconds() {
+      const difference = this.targetDate - new Date();
+      return Math.floor((difference % (SECOND * 60)) / SECOND);
+    },
+  },
+  beforeUnmount() {
+    clearInterval(this.countdown);
+  },
 };
 </script>
